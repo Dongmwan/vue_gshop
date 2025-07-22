@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      swiper:
+        specifier: 4.2.0
+        version: 4.2.0
       vue:
         specifier: ^2.6.14
         version: 2.7.16
@@ -1477,6 +1480,9 @@ packages:
 
   dom-serializer@1.4.1:
     resolution: {integrity: sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==}
+
+  dom7@2.1.5:
+    resolution: {integrity: sha512-xnhwVgyOh3eD++/XGtH+5qBwYTgCm0aW91GFgPJ3XG+jlsRLyJivnbP0QmUBFhI+Oaz9FV0s7cxgXHezwOEBYA==}
 
   domain-browser@1.2.0:
     resolution: {integrity: sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==}
@@ -3933,6 +3939,12 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
+  ssr-window@1.0.1:
+    resolution: {integrity: sha512-dgFqB+f00LJTEgb6UXhx0h+SrG50LJvti2yMKMqAgzfUmUXZrLSv2fjULF7AWGwK25EXu8+smLR3jYsJQChPsg==}
+
+  ssr-window@2.0.0:
+    resolution: {integrity: sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A==}
+
   ssri@5.3.0:
     resolution: {integrity: sha512-XRSIPqLij52MtgoQavH/x/dU1qVKtWUAAZeOHsR9c2Ddi4XerFy3mc1alf+dLJKl9EUIm/Ht+EowFkTUOA6GAQ==}
 
@@ -4074,6 +4086,10 @@ packages:
     engines: {node: '>=4.0.0'}
     deprecated: This SVGO version is no longer supported. Upgrade to v2.x.x.
     hasBin: true
+
+  swiper@4.2.0:
+    resolution: {integrity: sha512-D2qvHi0kCTLPcQUuwYi6ht0Fz/gP2YwLBzpjcoBvDKBeY8opW0yTImLCtR36U1G3ILYPKVFifWuMqUOoT1SiaA==}
+    engines: {node: '>= 4.7.0'}
 
   table@4.0.2:
     resolution: {integrity: sha512-UUkEAPdSGxtRpiV9ozJ5cMTtYiqz7Ni1OGqLXRCynrvzdtR1p+cfOWe2RJLwvUG8hNanaSRjecIqwOjqeatDsA==}
@@ -6313,6 +6329,10 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 4.3.1
       entities: 2.2.0
+
+  dom7@2.1.5:
+    dependencies:
+      ssr-window: 2.0.0
 
   domain-browser@1.2.0: {}
 
@@ -9341,6 +9361,10 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
+  ssr-window@1.0.1: {}
+
+  ssr-window@2.0.0: {}
+
   ssri@5.3.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -9516,6 +9540,11 @@ snapshots:
       stable: 0.1.8
       unquote: 1.1.1
       util.promisify: 1.0.1
+
+  swiper@4.2.0:
+    dependencies:
+      dom7: 2.1.5
+      ssr-window: 1.0.1
 
   table@4.0.2:
     dependencies:
