@@ -13,12 +13,12 @@
     <nav class="msite_nav">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <a href="javascript:" class="link_to_food">
+          <div class="swiper-slide" v-for="(categorys, index) in categorysArr" :key="index">
+            <a href="javascript:" class="link_to_food" v-for="(category, index) in categorys" :key="index">
               <div class="food_container">
-                <img src="./images/nav/1.jpg">
+                <img :src="baseImageUrl + category.image_url">
               </div>
-              <span>甜品饮品</span>
+              <span>{{category.title}}</span>
             </a>
             <a href="javascript:" class="link_to_food">
               <div class="food_container">
@@ -137,7 +137,13 @@ import 'swiper/dist/css/swiper.css'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
 export default {
+  data () {
+    return {
+      baseImageUrl: 'https://fuss10.elemecdn.com'
+    }
+  },
   mounted () {
+    this.$store.dispatch('getCategorys')
     // 初始化swiper
     // eslint-disable-next-line no-new
     new Swiper('.swiper-container', {
@@ -152,7 +158,29 @@ export default {
     ShopList
   },
   computed: {
-    ...mapState(['address'])
+    ...mapState(['address', 'categorys']), // state.js
+    // 根据categorys一堆数组生成一个2维数组，小数组中的元素个数最大是8
+    categorysArr () {
+      const {categorys} = this
+      // 准备空的2维数组
+      const arr = []
+      // 准备一个小数组（最大长度为8）
+      let minArr = []
+      // 遍历categorys
+      categorys.forEach(c => {
+        // 如果当前小数组已经满了，创建一个新的
+        if (minArr.length === 8) {
+          minArr = []
+        }
+        // 如果minArr是空的(新的)，将小数组保存到大数组中
+        if (minArr.length === 0) {
+          arr.push(minArr)
+        }
+        // 将当前分类保存到小数组中
+        minArr.push(c)
+      })
+      return arr
+    }
   }
 }
 </script>

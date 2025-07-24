@@ -23,7 +23,7 @@ export default {
         }
     },
     // 异步获取食品分类列表
-    async reqCategorys ({commit}) {
+    async getCategorys ({commit}) {
         // 发送异步ajax请求
         const result = await reqFoodCategorys()
         // 提交一个mutation
