@@ -14,7 +14,7 @@
               <section class="login_message">
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
                 <button :disabled="!rightPhone" class="get_verification"
-                :class="{right_phone: rightPhone}" @click="getCode">
+                :class="{right_phone: rightPhone}" @click.prevent="getCode">
                 {{computeTime > 0 ? `已发送（${computeTime}s）`: '获取验证码'}}</button>
               </section>
               <section class="login_verification">
@@ -47,7 +47,7 @@
           </form>
           <a href="javascript:;" class="about_us">关于我们</a>
         </div>
-        <a href="javascript:" class="go_back" @click.prevent="$router.back()">
+        <a href="javascript:" class="go_back" @click="$router.back()">
           <i class="iconfont icon-jiantou2"></i>
         </a>
       </div>
