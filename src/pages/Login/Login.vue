@@ -13,7 +13,9 @@
             <div :class="{on: loginWay}">
               <section class="login_message">
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-                <button disabled="disabled" class="get_verification" :class="{right_phone: rightPhone}">获取验证码</button>
+                <button :disabled="!rightPhone" class="get_verification"
+                :class="{right_phone: rightPhone}" @click="getCode">
+                {{computeTime > 0 ? `已发送（${computeTime}s）`: '获取验证码'}}</button>
               </section>
               <section class="login_verification">
                 <input type="tel" maxlength="8" placeholder="验证码">
@@ -45,7 +47,7 @@
           </form>
           <a href="javascript:;" class="about_us">关于我们</a>
         </div>
-        <a href="javascript:" class="go_back" @click="$router.back()">
+        <a href="javascript:" class="go_back" @click.prevent="$router.back()">
           <i class="iconfont icon-jiantou2"></i>
         </a>
       </div>
@@ -57,12 +59,29 @@ export default {
   data () {
     return {
       loginWay: true, // true: 短信登录, false: 密码登录
+      computeTime: 0, // 计时的时间
       phone: '' // 手机号
     }
   },
   computed: {
     rightPhone () {
       return /^1\d{10}$/.test(this.phone)
+    }
+  },
+  methods: {
+    getCode () {
+      // 如果当前没有计时
+      if (!this.computeTime) {
+        // 启动倒计时
+        this.computeTime = 30
+        setInterval(() => { // const intervalId =
+          this.computeTime--
+          if (this.computeTime <= 0) {
+            clearInterval(this.computeTime)
+          }
+        }, 1000)
+        // 发送ajax请求（向指定手机号发送验证码短信）
+      }
     }
   }
 }
