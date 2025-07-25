@@ -1,10 +1,10 @@
 <template>
     <div class="shop_container">
-    <ul class="shop_list">
+    <ul class="shop_list" v-if="shops.length">
         <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index">
         <a>
             <div class="shop_left">
-            <img class="shop_img" :src="baseImgUrl + shop.image_url">
+            <img class="shop_img" :src=getShopImg(shop.image_path)>
             </div>
             <div class="shop_right">
             <section class="shop_detail_header">
@@ -46,6 +46,11 @@
         </a>
         </li>
     </ul>
+    <ul v-else>
+      <li v-for="item in 6" :key="item">
+        <img src="./images/shop_back.svg" alt="back">
+      </li>
+    </ul>
     </div>
 </template>
 
@@ -54,11 +59,22 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      baseImgUrl: 'https://fuss10.elemecdn.com'
+      baseImgUrl: './images/shop/'
     }
   },
   computed: {
     ...mapState(['shops'])
+  },
+  methods: {
+    getShopImg (imagePath) {
+      // 注意：此路径是相对于 src 目录的
+      // try {
+        return require(`@/components/ShopList/images/shop/${imagePath}`)
+      // } catch (e) {
+      //   // 如果图片不存在，返回一个默认图片
+      //   return require('@/components/ShopList/images/shop/1.jpg')
+      // }
+    }
   }
 }
 </script>
